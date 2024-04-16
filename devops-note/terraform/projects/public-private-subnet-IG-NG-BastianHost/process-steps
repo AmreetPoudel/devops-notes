@@ -4,3 +4,8 @@
     public one act as bastian host or jumphost to private subnet and private 
     ec2 are databases and enterprise confedential resources or data that should 
     not be directly exposed to outer world
+4) ingress and egress to VPC 
+5) attach those security group to ec2 instances
+6) create internet gateway in vpc and associate subnet to VPC also associate 
+that route table to public subnet
+7) 
