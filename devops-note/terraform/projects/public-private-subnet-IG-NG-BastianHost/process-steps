@@ -1,0 +1,6 @@
+1) create VPC
+2) create private and public subnet within that VPC
+3)now create 2 ec2 instance on those subnets i.e 1 in private and 1 in public .
+    public one act as bastian host or jumphost to private subnet and private 
+    ec2 are databases and enterprise confedential resources or data that should 
+    not be directly exposed to outer world
