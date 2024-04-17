@@ -4,14 +4,14 @@ resource "aws_instance" "Amrit_aws_instance_public" {
   key_name        = "amrit-public"
   subnet_id       = aws_subnet.amrit_public_subnet.id
 
-  user_data = <<-EOF
-              #!/bin/bash
-              yum update -y
-              yum install -y nginx
-              systemctl start nginx
-              systemctl enable nginx
-              echo 'This is Amrit's website' > /usr/share/nginx/html/index.html
-              EOF
+user_data = <<-EOF
+#!/bin/bash
+yum install httpd -y
+systemctl start httpd
+systemctl enable httpd
+mkdir -p /var/www/html
+echo "<h1>Amrit website : `hostname`</h1>" > /var/www/html/index.html
+                EOF
 
 
   tags = {
@@ -24,7 +24,7 @@ resource "aws_instance" "Amrit_aws_instance_public" {
 resource "aws_instance" "Amrit_aws_instance_private" {
   ami             = "ami-09298640a92b2d12c"
   instance_type   = "t2.micro"
-  key_name        = "amrit-public"
+  key_name        = "test"
   subnet_id       = aws_subnet.amrit_private_subnet.id
   tags = {
     Name = "Amrit_aws_instance_private"
@@ -77,7 +77,7 @@ output "Amrit_aws_instance_public_ip" {
   description = "To get public ip of bastian host "
   value = aws_instance.Amrit_aws_instance_public.public_ip
 }
-output "Amrit_aws_instance_public_ip" {
+output "Amrit_aws_instance_private_ip" {
   description = "To ssh into private ec2 via bastian host"
   value = aws_instance.Amrit_aws_instance_private.private_ip
   
