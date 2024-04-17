@@ -3,10 +3,22 @@ resource "aws_instance" "Amrit_aws_instance_public" {
   instance_type   = "t2.micro"
   key_name        = "amrit-public"
   subnet_id       = aws_subnet.amrit_public_subnet.id
+
+  user_data = <<-EOF
+              #!/bin/bash
+              yum update -y
+              yum install -y nginx
+              systemctl start nginx
+              systemctl enable nginx
+              echo 'This is Amrit's website' > /usr/share/nginx/html/index.html
+              EOF
+
+
   tags = {
     Name = "Amrit_aws_instance_public"
   }
   vpc_security_group_ids = [aws_security_group.amrit_sg.id]
+  
 }
 
 resource "aws_instance" "Amrit_aws_instance_private" {
@@ -39,6 +51,13 @@ resource "aws_security_group" "amrit_sg" {
     cidr_blocks = ["0.0.0.0/0"]
     description = "HTTP access from anywhere"
   }
+    ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "HTTPS access from anywhere"
+  }
 
   # Outbound rules: Allow all traffic out
   egress {
@@ -52,5 +71,14 @@ resource "aws_security_group" "amrit_sg" {
   tags = {
     Name = "amrit_security_group"
   }
+  
+}
+output "Amrit_aws_instance_public_ip" {
+  description = "To get public ip of bastian host "
+  value = aws_instance.Amrit_aws_instance_public.public_ip
+}
+output "Amrit_aws_instance_public_ip" {
+  description = "To ssh into private ec2 via bastian host"
+  value = aws_instance.Amrit_aws_instance_private.private_ip
   
 }
