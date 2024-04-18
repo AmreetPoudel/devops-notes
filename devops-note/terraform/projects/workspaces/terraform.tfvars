@@ -1,0 +1,6 @@
+instance_type = "t2.micro"
+subnet_id = "subnet-09bd7a0e0643e13b6"
+ami = "ami-09298640a92b2d12c"
+key_name = "amrit-public"
+region = "ap-south-1a" 
+Name = "Amrit-ec2"
