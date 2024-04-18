@@ -1,7 +1,7 @@
 resource "aws_instance" "Amrit_aws_instance_public" {
   ami             = "ami-09298640a92b2d12c"
   instance_type   = "t2.micro"
-  key_name        = "amrit-public"
+  key_name        = "test"
   subnet_id       = aws_subnet.amrit_public_subnet.id
 
 user_data = <<-EOF

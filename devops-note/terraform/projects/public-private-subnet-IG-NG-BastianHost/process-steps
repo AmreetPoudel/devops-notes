@@ -9,3 +9,9 @@
 // 6) create internet gateway in vpc and associate subnet to VPC also associate 
 // that route table to public subnet
 // 7) Now create NAT gateway
+// 8) now for testing ssh into bastian host
+// 9) now ssh into private ec2 
+// 10) try to ping or update packages from private ec2 you should succeed because it
+//     will use NAT gateway to access resource and remember it is unidirectional flow
+//     we cannot access private ec2 from internt but we can access internet from 
+//     private ec2.
