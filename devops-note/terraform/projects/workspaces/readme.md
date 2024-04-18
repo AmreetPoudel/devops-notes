@@ -31,7 +31,3 @@ Variables in Terraform are used to abstract certain values that can change based
 - `/workspaces`: Contains examples and use cases showcasing how to effectively use Terraform workspaces.
 - `/variables`: Demonstrates the definition and usage of variables within Terraform projects.
 
-## Getting Started
-
-To get started with these examples, you need to have Terraform installed on your machine. Follow the installation guide here: [Install Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html)
-
